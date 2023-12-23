@@ -31,6 +31,7 @@ public class CartServiceImpl implements CartService {
 			CartItem cartItem = cart.get();
 			cartItem.setQuantity(qty);
 			cartItemRepository.save(cartItem);
+			return "Quantity updated Successfully "+qty+" item of product "+cartItem.getProduct().getName()+" added";
 		}else {
 			CartItem item=new CartItem();
 			item.setProduct(product);

@@ -38,6 +38,9 @@ public class CartController {
 	@GetMapping("{userId}")
 	public ResponseEntity<Cart> viewCart(@PathVariable Integer userId){
 		List<CartItem> listOfCarts = cartService.viewCart(userId);
+		if(listOfCarts.size()==0) {
+			return new ResponseEntity<Cart>(new Cart(),HttpStatus.OK);
+		} 
 		Cart cart=new Cart();
 		cart.setCartItems(listOfCarts);
 		double total=0.0;
@@ -45,6 +48,7 @@ public class CartController {
 			total=total+cartItem.getProduct().getPrice()*cartItem.getQuantity();
 		}
 		cart.setTotal(total);
+		
 		return new ResponseEntity<>(cart,HttpStatus.OK);
 	}
 }

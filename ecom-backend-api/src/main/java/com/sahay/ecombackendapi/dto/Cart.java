@@ -12,5 +12,5 @@ import lombok.Setter;
 @Setter
 public class Cart {
 	private List<CartItem> cartItems = new ArrayList<>();
-	private Double total;
+	private Double total=0.0;
 }
