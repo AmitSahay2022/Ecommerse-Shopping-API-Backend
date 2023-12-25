@@ -9,6 +9,7 @@ import com.sahay.ecombackendapi.entity.CartItem;
 import com.sahay.ecombackendapi.entity.Product;
 import com.sahay.ecombackendapi.entity.User;
 import com.sahay.ecombackendapi.exception.CartItemNotFoundException;
+import com.sahay.ecombackendapi.exception.InvalidQuantityException;
 import com.sahay.ecombackendapi.repository.CartItemRepository;
 import com.sahay.ecombackendapi.service.CartService;
 import com.sahay.ecombackendapi.service.ProductService;
@@ -24,6 +25,9 @@ public class CartServiceImpl implements CartService {
     private ProductService productService;
 	@Override
 	public String addToCart(Integer userId, Integer productId,Integer qty) {
+		if(qty>5 || qty<1) {
+			throw new InvalidQuantityException("Product quantity should be atleast 1 and max upto 5");
+		}
 		User user = userService.getUser(userId);
 		Product product = productService.getProductById(productId);
 		Optional<CartItem> cart = cartItemRepository.findByUserIdAndProductId(userId, productId);
