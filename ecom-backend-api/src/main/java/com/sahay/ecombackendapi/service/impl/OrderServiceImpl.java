@@ -10,7 +10,6 @@ import com.sahay.ecombackendapi.entity.OrderItem;
 import com.sahay.ecombackendapi.entity.User;
 import com.sahay.ecombackendapi.exception.EmptyCartException;
 import com.sahay.ecombackendapi.exception.OrderNotFoundException;
-import com.sahay.ecombackendapi.repository.OrderItemRepository;
 import com.sahay.ecombackendapi.repository.OrderRepository;
 import com.sahay.ecombackendapi.service.CartService;
 import com.sahay.ecombackendapi.service.OrderService;
@@ -21,8 +20,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Service
 public class OrderServiceImpl implements OrderService {
-    private OrderRepository orderRepository;
-    private OrderItemRepository itemRepository;
+    private OrderRepository orderRepository;   
     private UserService userService;
     private CartService cartService;
 	@Override
